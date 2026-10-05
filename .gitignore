@@ -1,0 +1,7 @@
+*.pdf
+*.scr
+build/
+dist/
+*.spec
+__pycache__/
+.venv/
