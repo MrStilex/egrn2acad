@@ -14,7 +14,13 @@ import sys
 
 import pdfplumber
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
+
+BANNER = f"""==============================================
+ egrn2acad {VERSION} — выписки ЕГРН и ГПЗУ → AutoCAD
+ Автор: Анвар
+ Telegram: @melt28
+=============================================="""
 
 POINT_RE = re.compile(r"^(\d+)\s+(\d{6}(?:\.\d+)?)\s+(\d{7}(?:\.\d+)?)(?:\s|$)")
 SECTION_32_RE = re.compile(r"Лист № \d+ раздела 3\.2 ")
@@ -130,6 +136,7 @@ def main(argv):
     if "--version" in argv:
         print(f"egrn2acad {VERSION}")
         return 0
+    print(BANNER + "\n")
     base = os.path.dirname(os.path.abspath(sys.executable if getattr(sys, "frozen", False) else __file__))
     pdfs = [a for a in argv if a.lower().endswith(".pdf")] or sorted(glob.glob(os.path.join(base, "*.pdf")))
     if not pdfs:
